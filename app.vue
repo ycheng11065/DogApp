@@ -1,23 +1,24 @@
 <script setup>
 
 let listofBreeds = []
-const selectedBreed = ref("")
+const selectedBreed = ref("affenpinscher")
 
 const { data: breeds } = await useAsyncData('breeds', () => 
   $fetch('https://dog.ceo/api/breeds/list/all')
 );
-
-const { data: dogs, refresh: dogsRefresh } = await useAsyncData('dogs', () => 
-  $fetch('https://dog.ceo/api/breeds/image/random')
-);
-
 
 // Extract all the general breeds from Api data
 if (breeds) {
   listofBreeds = Object.keys(breeds.value.message);
 }
 
-console.log(listofBreeds);
+const { data: dogs, refresh: dogsRefresh } = await useAsyncData('dogs', () => 
+  $fetch(`https://dog.ceo/api/breed/${selectedBreed.value}/images/random`)
+);
+
+// console.log(listofBreeds[0]);
+console.log(selectedBreed.value)
+// console.log(selectedBreed);
 // console.log(Object.keys(breeds.value.message));
 // console.log(breeds.value)
 // console.log(dogs.value);
@@ -28,7 +29,6 @@ console.log(listofBreeds);
     <div class="buttons">
       <button class="dogButton" @click=dogsRefresh>Create Dog</button>
       <select v-model="selectedBreed">
-        <option disabled value="">Please select</option>
         <option v-for="(breed, _) in listofBreeds" :value="breed">
           {{ breed }}
         </option>
