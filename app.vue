@@ -1,6 +1,7 @@
 <script setup>
 
 let listofBreeds = []
+const selectedBreed = ref("")
 
 const { data: breeds } = await useAsyncData('breeds', () => 
   $fetch('https://dog.ceo/api/breeds/list/all')
@@ -26,6 +27,12 @@ console.log(listofBreeds);
   <div class="app">
     <div class="buttons">
       <button class="dogButton" @click=dogsRefresh>Create Dog</button>
+      <select v-model="selectedBreed">
+        <option disabled value="">Please select</option>
+        <option v-for="(breed, _) in listofBreeds" :value="breed">
+          {{ breed }}
+        </option>
+      </select>
     </div>
     <div class="dogImage">
       <img :src=dogs.message />
