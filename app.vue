@@ -1,5 +1,7 @@
 <script setup>
 
+let listofBreeds = []
+
 const { data: breeds } = await useAsyncData('breeds', () => 
   $fetch('https://dog.ceo/api/breeds/list/all')
 );
@@ -8,7 +10,15 @@ const { data: dogs, refresh: dogsRefresh } = await useAsyncData('dogs', () =>
   $fetch('https://dog.ceo/api/breeds/image/random')
 );
 
-console.log(breeds.value)
+
+// Extract all the general breeds from Api data
+if (breeds) {
+  listofBreeds = Object.keys(breeds.value.message);
+}
+
+console.log(listofBreeds);
+// console.log(Object.keys(breeds.value.message));
+// console.log(breeds.value)
 // console.log(dogs.value);
 </script>
 
