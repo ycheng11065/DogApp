@@ -1,9 +1,4 @@
-<template>
-  <div>
-    <p>Hello world!</p>
 
-  </div>
-</template>
 
 <script setup lang="ts">
 
@@ -14,6 +9,13 @@ const { data, status, error, refresh, clear } = await useAsyncData(
 
 console.log(data.value);
 </script>
+
+<template>
+  <div>
+    <p> {{data.message}} </p>
+    <img :src=data.message />
+  </div>
+</template>
 
 <style lang="scss" scoped>
 
