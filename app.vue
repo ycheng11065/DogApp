@@ -1,21 +1,26 @@
 <script setup>
 
-const { data, status, error, refresh, clear } = await useAsyncData('dogs', () => 
+const { data: breeds } = await useAsyncData('breeds', () => 
+  $fetch('https://dog.ceo/api/breeds/list/all')
+);
+
+const { data: dogs, refresh: dogsRefresh } = await useAsyncData('dogs', () => 
   $fetch('https://dog.ceo/api/breeds/image/random')
 );
 
-console.log(data.value);
+console.log(breeds.value)
+// console.log(dogs.value);
 </script>
 
 <template>
   <div class="app">
     <div class="buttons">
-      <button class="dogButton" @click=refresh>Create Dog</button>
+      <button class="dogButton" @click=dogsRefresh>Create Dog</button>
     </div>
     <div class="dogImage">
-      <img :src=data.message />
+      <img :src=dogs.message />
     </div>
-    <p> {{data.message}} </p>
+    <p> {{dogs.message}} </p>
     
   </div>
 </template>
