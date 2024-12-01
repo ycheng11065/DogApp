@@ -22,18 +22,24 @@ const { data: dogs, refresh: dogsRefresh } = await useAsyncData('dogs', () =>
 
 <template>
   <div class="app">
-    <div class="buttons">
-      <button class="dogButton" @click=dogsRefresh>Create Dog</button>
-      <select v-model="selectedBreed">
-        <option v-for="(breed, _) in listofBreeds" :value="breed">
-          {{ breed }}
-        </option>
-      </select>
+
+    <div class="contentDivisor">
+
+        <div class="buttons">
+          <button class="dogButton btn btn-dark" @click=dogsRefresh>Spawn a dog!</button>
+
+          <select v-model="selectedBreed"  class="dogButton form-select">
+            <option v-for="(breed, _) in listofBreeds" :value="breed">
+              {{ breed }}
+            </option>
+          </select>
+        </div>
+
+        <div class="imageContainer">
+          <img :src=dogs.message class="img-fluid" alt="invisble dog"/>
+        </div>
+
     </div>
-    <div class="dogImage">
-      <img :src=dogs.message />
-    </div>
-    <p> {{dogs.message}} </p>
     
   </div>
 </template>
@@ -43,7 +49,40 @@ const { data: dogs, refresh: dogsRefresh } = await useAsyncData('dogs', () =>
   width: 100vw;
   height: 100vh;
   box-sizing: border-box;
-  border: 3px solid red;
+  overflow: hidden;
+}
+
+.contentDivisor {
+  margin-top: 35px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 40vw;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.dogButton {
+  margin-bottom: 50px;
+  width: 250px;
+  height: 50px;
+  flex-shrink: 0;
+  flex-grow: 0;  
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  object-fit: contain;
+  max-width: 100%; 
+  max-height: 100%;
+  overflow: hidden;
 }
 
 </style>
