@@ -1,75 +1,11 @@
-# Nuxt Minimal Starter
+# Random Dog generator
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+![dog-app-gif](https://github.com/user-attachments/assets/3ce0d6c8-9550-44e4-adeb-a2531e0367b5)
 
-## Setup
+A simple app that fetches and displays random images of user-selected dog breeds using the Dog API. Built as a Pre-Interview task.
 
-Make sure to install dependencies:
+## Debugging Experience
 
-```bash
-# npm
-npm install
+This was my first time working with Nuxt and Vue, so I spent a lot of time researching and experimenting with the framework. I found both Nuxt and Vue to be intuitive and enjoyable to use.
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+One challenge I faced was extracting data properly from the API response, which required thorough debugging with print statements to understand the response structure. Additionally, I encountered issues with handling `ref` values, as I initially overlooked the difference between accessing `ref` values and regular variables.
