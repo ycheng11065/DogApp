@@ -1,7 +1,7 @@
 <script setup>
 
-let listofBreeds = []
-const selectedBreed = ref("")
+let listofBreeds = [];
+const selectedBreed = ref("");
 
 // Gather data from all breeds api
 const { data: breeds } = await useAsyncData('breeds', () => 
@@ -11,8 +11,8 @@ const { data: breeds } = await useAsyncData('breeds', () =>
 // Extract all the general breeds from Api data and set selectedBreed as first available breed
 if (breeds) {
   listofBreeds = Object.keys(breeds.value.message);
-  selectedBreed.value = listofBreeds[0]
-}
+  selectedBreed.value = listofBreeds[0];
+};
 
 // Fetch image data for the desired dog breed
 const { data: dogs, refresh: dogsRefresh } = await useAsyncData('dogs', () => 
