@@ -1,27 +1,23 @@
 <script setup>
 
 let listofBreeds = []
-const selectedBreed = ref("affenpinscher")
+const selectedBreed = ref("")
 
+// Gather data from all breeds api
 const { data: breeds } = await useAsyncData('breeds', () => 
   $fetch('https://dog.ceo/api/breeds/list/all')
 );
 
-// Extract all the general breeds from Api data
+// Extract all the general breeds from Api data and set selectedBreed as first available breed
 if (breeds) {
   listofBreeds = Object.keys(breeds.value.message);
+  selectedBreed.value = listofBreeds[0]
 }
 
+// Fetch image data for the desired dog breed
 const { data: dogs, refresh: dogsRefresh } = await useAsyncData('dogs', () => 
   $fetch(`https://dog.ceo/api/breed/${selectedBreed.value}/images/random`)
 );
-
-// console.log(listofBreeds[0]);
-console.log(selectedBreed.value)
-// console.log(selectedBreed);
-// console.log(Object.keys(breeds.value.message));
-// console.log(breeds.value)
-// console.log(dogs.value);
 </script>
 
 <template>
@@ -43,5 +39,11 @@ console.log(selectedBreed.value)
 </template>
 
 <style lang="scss" scoped>
+.app {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  border: 3px solid red;
+}
 
 </style>
